@@ -66,12 +66,14 @@ Here are some detailed examples of writing API tests using `.http` files:
 GET http://helloworld.com/users/1
 Accept: application/json
 
+{% raw %}
 > {%
 client.test("Request executed successfully", function() {
     client.assert(response.status === 200, "Response status is not 200");
     client.assert(response.body.id === 1, "User ID is not 1");
 });
 %}
+{% endraw %}
 ```
 
 #### Example 2: POST Request with Assertions
@@ -87,12 +89,14 @@ Content-Type: application/json
   "email": "hello@world.com"
 }
 
+{% raw %}
 > {%
 client.test("User created successfully", function() {
     client.assert(response.status === 201, "Response status is not 201");
     client.assert(response.body.username === "helloworld", "Username is not correct");
 });
 %}
+{% endraw %}
 ```
 
 ## Advanced Features
@@ -124,9 +128,11 @@ Content-Type: application/json
   "email": "hello@world.com"
 }
 
+{% raw %}
 > {%
 client.global.set("userId", response.body.id);
 %}
+{% endraw %}
 
 ### GET request to fetch the newly created user
 GET https://helloworld.com/users/{{userId}}
@@ -159,4 +165,3 @@ Always assert the responses to ensure that your API is behaving as expected.
 
 1. **Check Server Logs**: Check the server logs for any errors or issues.
 2. **Debugging**: Use the debugging features in your editor to step through the requests and responses.
-
